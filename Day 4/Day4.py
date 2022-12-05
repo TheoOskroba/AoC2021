@@ -35,92 +35,92 @@ def read_file(filename):
     return numbers, arrays
 
 def bingo_winner(called_numbers, game_boards):
-  # Keep track of the number of numbers called for each game board
-  called_counts = 0
-  
-  # Keep track of whether each game board has won yet
-  game_won = [False] * len(game_boards)
-  
-  # For each number called
-  for number in called_numbers:
-    # For each game board
-    for i, game_board in enumerate(game_boards):
-      # If this game board has already won, skip it
-      if game_won[i]:
-        # Return the winning game board and the number of numbers called to win
-        winning_board_index = game_won.index(True)
-        return game_board, called_numbers[called_counts-1], winning_board_index
-      
-      # Check if this number completes a row, column, or diagonal on this game board
-      game_board = copy(game_board)
-      for j, row in enumerate(game_board):
-        if row.count(number) > 0:
-          row[row.index(number)] = 'X'
-      for j, row in enumerate(game_board):
-        if row.count('X') == 5:
-          game_won[i] = True
-      for j in range(5):
-        column = [game_board[k][j] for k in range(5)]
-        if column.count('X') == 5:
-          game_won[i] = True
+	# Keep track of the number of numbers called for each game board
+	called_counts = 0
+	
+	# Keep track of whether each game board has won yet
+	game_won = [False] * len(game_boards)
+	
+	# For each number called
+	for number in called_numbers:
+		# For each game board
+		for i, game_board in enumerate(game_boards):
+			# If this game board has already won, skip it
+			if game_won[i]:
+				# Return the winning game board and the number of numbers called to win
+				winning_board_index = game_won.index(True)
+				return game_board, called_numbers[called_counts-1], winning_board_index
+			
+			# Check if this number completes a row, column, or diagonal on this game board
+			game_board = copy(game_board)
+			for j, row in enumerate(game_board):
+				if row.count(number) > 0:
+					row[row.index(number)] = 'X'
+			for j, row in enumerate(game_board):
+				if row.count('X') == 5:
+					game_won[i] = True
+			for j in range(5):
+				column = [game_board[k][j] for k in range(5)]
+				if column.count('X') == 5:
+					game_won[i] = True
 
-    called_counts += 1
-      
+		called_counts += 1
+			
 
-  # Find the index of the first game board that has won
-  winning_board_index = game_won.index(True)
-  
-  # Return the winning game board and the number of numbers called to win
-  return game_boards[winning_board_index], called_numbers[called_counts-1], winning_board_index
+	# Find the index of the first game board that has won
+	winning_board_index = game_won.index(True)
+	
+	# Return the winning game board and the number of numbers called to win
+	return game_boards[winning_board_index], called_numbers[called_counts-1], winning_board_index
   
   
 def bingo_winner_last(called_numbers, game_boards):
-  # Keep track of the number of numbers called for each game board
-  called_counts = 0
-  
-  won_boards_indexes = []
-  won_nums = []
-  final_boards = []
-  # Keep track of whether each game board has won yet
-  game_won = [False] * len(game_boards)
-  
-  # For each number called
-  for number in called_numbers:
-    # For each game board
-    for i, game_board in enumerate(game_boards):
-      # If this game board has already won, skip it
-      if game_won[i]:
-        if i not in won_boards_indexes:
-            won_boards_indexes.append(i)
-            won_nums.append(called_counts)
-            
-            final_boards.append(copy(game_board))
-        continue
-        
-      # Check if this number completes a row, column, or diagonal on this game board
-      game_board = copy(game_board)
-      for j, row in enumerate(game_board):
-        if row.count(number) > 0:
-          row[row.index(number)] = 'X'
-      for j, row in enumerate(game_board):
-        if row.count('X') == 5:
-          game_won[i] = True
-      for j in range(5):
-        column = [game_board[k][j] for k in range(5)]
-        if column.count('X') == 5:
-          game_won[i] = True
+	# Keep track of the number of numbers called for each game board
+	called_counts = 0
+	
+	won_boards_indexes = []
+	won_nums = []
+	final_boards = []
+	# Keep track of whether each game board has won yet
+	game_won = [False] * len(game_boards)
+	
+	# For each number called
+	for number in called_numbers:
+		# For each game board
+		for i, game_board in enumerate(game_boards):
+			# If this game board has already won, skip it
+			if game_won[i]:
+				if i not in won_boards_indexes:
+						won_boards_indexes.append(i)
+						won_nums.append(called_counts)
+						
+						final_boards.append(copy(game_board))
+				continue
+				
+			# Check if this number completes a row, column, or diagonal on this game board
+			game_board = copy(game_board)
+			for j, row in enumerate(game_board):
+				if row.count(number) > 0:
+					row[row.index(number)] = 'X'
+			for j, row in enumerate(game_board):
+				if row.count('X') == 5:
+					game_won[i] = True
+			for j in range(5):
+				column = [game_board[k][j] for k in range(5)]
+				if column.count('X') == 5:
+					game_won[i] = True
 
-    called_counts += 1
-      
+		called_counts += 1
+			
 
-  # Find the index of the first game board that has won
-  winning_board_index = game_won.index(True)
-  
-  # Return the winning game board and the number of numbers called to win
-  last_won = won_boards_indexes.pop()
-  last_num = called_numbers[won_nums.pop()-1]
-  
-  return game_boards[last_won], last_num, last_won
+	# Find the index of the first game board that has won
+	winning_board_index = game_won.index(True)
+	
+	# Return the winning game board and the number of numbers called to win
+	last_won = won_boards_indexes.pop()
+	last_num = called_numbers[won_nums.pop()-1]
+	
+	return game_boards[last_won], last_num, last_won
 
 def calc_score(board, num):
     sum = 0

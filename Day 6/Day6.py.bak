@@ -27,8 +27,11 @@ def simulate_fish_growth(fish, days):
                 fish[j] -= 1
     return len(fish)
 
-def simulate_fish_growth_fast(fish, days):
-    fsh = fish
+# Modified part 1 answer to use counters and dictionaries to facilitate speed
+def simulate_fish_growth_fast(fish_list, days):
+    # What do you call a fish with no eyes?
+    fsh = fish_list
+    # A fsh
     for i in range(days):
         fishDict = defaultdict(int)
         for fish, count in fsh.items():
@@ -37,11 +40,17 @@ def simulate_fish_growth_fast(fish, days):
                 fishDict[8] += count
             else:
                 fishDict[fish - 1] += count
+        # if i == 20 or i == 21:
+            # print(fishDict)
+                
         fsh = fishDict
     return sum(fsh.values())
 
 
 
 #fish = [3, 4, 3, 1, 2]
+# Read input from file
 fish = read_file('day6Data.txt')
+
+# Calculate the fish population
 print(simulate_fish_growth_fast(fish, 256)) # Expected output: 15

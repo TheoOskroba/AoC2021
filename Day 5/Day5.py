@@ -4,8 +4,8 @@ from collections import Counter
 
 # Read in lines from file and return list of strings
 def read_file(filename):
-  with open(filename, 'r') as f:
-    return [line.strip() for line in f]
+	with open(filename, 'r') as f:
+		return [line.strip() for line in f]
 
 # Find where points on a grid have overlapping lines
 def find_overlaps(lines):

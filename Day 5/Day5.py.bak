@@ -82,5 +82,5 @@ lines = [
 lines = read_file('day5Data.txt')
 
 # Output final results
-# print(find_overlaps(lines))
+print(find_overlaps(lines))
 print(find_overlaps_diagonal(lines))

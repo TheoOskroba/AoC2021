@@ -55,12 +55,12 @@ def calculate_oxygen_rating(binary_strings):
     zero_count = sum(binary_string[index] == '0' for binary_string in current_strings)
     one_count = sum(binary_string[index] == '1' for binary_string in current_strings)
     
-    # If more zeros appear at this index, add a 0 to the oxygen rating and select all binary strings that start with 0
+    # If more zeros appear at this index, add a 1 to the index counter and select all binary strings that start with 0
     if zero_count > one_count:
       index += 1
       current_strings = [binary_string for binary_string in current_strings if binary_string[index - 1] == '0']
       
-    # If more ones appear at this index, add a 1 to the oxygen rating and select all binary strings that start with 1
+    # If more ones appear at this index, add a 1 to the index counter and select all binary strings that start with 1
     else:
       index += 1
       current_strings = [binary_string for binary_string in current_strings if binary_string[index - 1] == '1']
